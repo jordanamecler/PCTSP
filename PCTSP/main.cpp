@@ -11,11 +11,11 @@
 using namespace std;
 
 struct Params {
-	vector<vector<unsigned int>> vertices;
-	vector<vector<unsigned int>> distanceMatrix;
+	vector<vector<unsigned int> > vertices;
+	vector<vector<unsigned int> > distanceMatrix;
 	vector<bool> visited;
 	unsigned int totalPrize;
-	vector<vector<unsigned int>> orderSwapTwoOpt;
+	vector<vector<unsigned int> > orderSwapTwoOpt;
 
 	Params() {
 		totalPrize = 0;
@@ -59,14 +59,14 @@ vector<string> openFile(unsigned int size, unsigned int maxPrize, unsigned int m
 void createGraph(const vector<string> &lines, Params *params) {
 
 	istringstream iss(lines[0]);
-	vector<string> tokens{ istream_iterator<string>{iss}, istream_iterator<string>{} };
+	vector<string> tokens{(istream_iterator<string>(iss)), istream_iterator<string>() };
 	for (unsigned int i = 0; i < tokens.size(); i++) {
 		params->totalPrize += (unsigned int)stoi(tokens[i]);
 		params->vertices.push_back({ (unsigned int)stoi(tokens[i]) });
 	}
 
 	istringstream iss2(lines[1]);
-	vector<string> tokens2{ istream_iterator<string>{iss2}, istream_iterator<string>{} };
+	vector<string> tokens2{(istream_iterator<string>(iss2)), istream_iterator<string>() };
 	for (unsigned int i = 0; i < tokens2.size(); i++) {
 		params->vertices[i].push_back((unsigned int)stoi(tokens2[i]));
 	}
@@ -74,7 +74,7 @@ void createGraph(const vector<string> &lines, Params *params) {
 	for (unsigned int i = 2; i < lines.size(); i++) {
 		params->distanceMatrix.emplace_back();
 		istringstream iss3(lines[i]);
-		vector<string> tokens3{ istream_iterator<string>{iss3}, istream_iterator<string>{} };
+		vector<string> tokens3{(istream_iterator<string>(iss3)), istream_iterator<string>() };
 		for (unsigned int j = 0; j < tokens.size(); j++) {
 			params->distanceMatrix[i - 2].push_back((unsigned int)stoi(tokens3[j]));
 		}
